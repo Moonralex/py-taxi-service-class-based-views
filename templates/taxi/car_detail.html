@@ -2,7 +2,10 @@
 
 {% block content %}
   {%  if car %}
-    <h3>Car model: {{ car.model }}</h3>
+    <h3>Car model: {{ car.model }}
+      <a class="anchor-link" href="{% url 'taxi:car-update' pk=car.pk %}">Update</a>
+      <a class="alert-link" href="{% url 'taxi:car-delete' pk=car.pk %}">Delete</a>
+    </h3>
     <p><strong>Manufacturer:</strong> {{ car.manufacturer.name }}</p>
     <p><strong>Country of manufacture:</strong> {{ car.manufacturer.country }}</p>
     <p><strong>Drivers:</strong></p>

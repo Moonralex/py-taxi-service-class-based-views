@@ -10,6 +10,9 @@ class Manufacturer(models.Model):
     class Meta:
         ordering = ("name", )
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class Driver(AbstractUser):
     license_number = models.CharField(max_length=255, unique=True)
@@ -20,7 +23,7 @@ class Driver(AbstractUser):
     def get_full_name(self) -> str:
         return f"{self.first_name} {self.last_name}"
 
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> str:
         return reverse("taxi:driver-detail", args=[str(self.id)])
 
 
@@ -34,5 +37,8 @@ class Car(models.Model):
     class Meta:
         ordering = ("model", )
 
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> str:
         return reverse("taxi:car-detail", args=[str(self.id)])
+
+    def __str__(self) -> str:
+        return f"{self.manufacturer} | {self.model}"
